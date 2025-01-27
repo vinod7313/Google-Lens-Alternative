@@ -58,3 +58,5 @@ Metric: Cosine similarity for image comparison.
 # Performance:
 Fast feature extraction with pre-trained ResNet50.
 High accuracy in retrieving visually similar images.
+
+![image](https://github.com/user-attachments/assets/b116f7cb-bdba-4199-8476-1c22d1c31511)
