@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Similarity Search</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <div class="container mx-auto p-8">
+    <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6">
+      <h1 class="text-3xl font-bold text-center mb-6">Google Lens Alternative</h1>
+      <p class="text-center text-gray-600 mb-4">
+        Upload an image to find similar images from the dataset.
+      </p>
+      <form id="uploadForm" enctype="multipart/form-data" class="space-y-4">
+        <div class="flex flex-col items-center">
+          <label for="file" class="text-lg font-medium">Upload Image:</label>
+          <input
+            type="file"
+            id="file"
+            name="file"
+            accept="image/*"
+            class="mt-2 border border-gray-300 p-2 rounded-lg w-full"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
+        >
+          Search Similar Images
+        </button>
+      </form>
+      <div id="result" class="mt-8 hidden">
+        <h2 class="text-2xl font-bold mb-4">Similar Images:</h2>
+        <div id="similarImages" class="grid grid-cols-2 gap-4"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("uploadForm");
+    const resultDiv = document.getElementById("result");
+    const similarImagesDiv = document.getElementById("similarImages");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData();
+      const fileInput = document.getElementById("file");
+      const file = fileInput.files[0];
+      formData.append("file", file);
+
+      // Call the Flask API
+      const response = await fetch("/similarity/cnn", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        resultDiv.classList.remove("hidden");
+        similarImagesDiv.innerHTML = "";
+
+        data.similar_images.forEach((image) => {
+          const imageDiv = document.createElement("div");
+          imageDiv.innerHTML = `
+            <div class="border p-4 rounded-lg shadow">
+              <img src="static/images/${image.index}.jpg" alt="Similar Image" class="w-full h-48 object-cover rounded-lg mb-2" />
+              <p class="text-center font-medium">Similarity: ${(
+                image.similarity * 100
+              ).toFixed(2)}%</p>
+            </div>
+          `;
+          similarImagesDiv.appendChild(imageDiv);
+        });
+      } else {
+        alert("Error fetching similar images. Please try again.");
+      }
+    });
+  </script>
+</body>
+</html>
