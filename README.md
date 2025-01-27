@@ -12,10 +12,8 @@ Features
 Approaches
 Dataset
 Installation
-Usage
 API Endpoints
 Results
-Next Steps
 References
 
 # Objective: The goal is to develop an image similarity search engine with multiple methods:
@@ -23,12 +21,12 @@ References
 Extract image features using a pre-trained CNN (ResNet50).
 Provide a scalable solution for real-time image similarity search.
 Compare different techniques and evaluate their performance.
-Features
+# Features
 Upload an image and retrieve similar images.
 Support for feature extraction using CNN-based models.
 Lightweight and efficient solution, suitable for real-time applications.
 Pretrained ResNet50 as the feature extraction backbone.
-Approaches
+# Approaches
 Convolutional Neural Network (CNN)
 Utilizes the ResNet50 architecture pre-trained on ImageNet. Features are extracted from the global average pooling layer, and cosine similarity is used for similarity comparison.
 Note: Future extensions will include additional methods like Autoencoders and Siamese Networks.
@@ -37,17 +35,6 @@ Note: Future extensions will include additional methods like Autoencoders and Si
 The project uses the CIFAR-10 dataset for demonstration:
 60,000 images (50,000 for training, 10,000 for testing).
 10 classes: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, and truck.
-Installation
-1. Clone the Repository
-
-git clone https://github.com/yourusername/google-lens-alternative.git
-cd google-lens-alternative
-2. Install Dependencies
-
-pip install -r requirements.txt
-3. Run the Flask Application
-python app.py
-
 
 # API Endpoints
 Endpoint	Method	Description
