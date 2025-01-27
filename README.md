@@ -1,6 +1,8 @@
 # Google-Lens-Alternative
 Google Lens Alternative: Image Similarity Search
 
+![image](https://github.com/user-attachments/assets/664055fa-8566-4ab1-8a21-2f821155b984)
+
 Google Lens Alternative: Image Similarity Search
 This project implements an alternative to Google Lens by enabling image similarity search using machine learning techniques. The application provides a Flask-based API that identifies and retrieves the most similar images to an input image from a dataset (CIFAR-10).
 
@@ -59,4 +61,3 @@ Metric: Cosine similarity for image comparison.
 Fast feature extraction with pre-trained ResNet50.
 High accuracy in retrieving visually similar images.
 
-![image](https://github.com/user-attachments/assets/b116f7cb-bdba-4199-8476-1c22d1c31511)
